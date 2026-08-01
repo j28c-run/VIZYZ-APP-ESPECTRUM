@@ -1,1 +1,1 @@
-![img](default.png)
+![img](assets/default.png)
