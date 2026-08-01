@@ -1,0 +1,250 @@
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-panel: rgba(20, 20, 30, 0.8);
+    --accent: #d4b0ff;
+    /* Pastel Purple/Pink */
+    --accent-glow: rgba(212, 176, 255, 0.4);
+    --text-main: #f0f0f0;
+    --text-muted: #8888aa;
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.canvas-container {
+    flex: 1;
+    position: relative;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+#glCanvas {
+    z-index: 1;
+}
+
+#uiCanvas {
+    z-index: 2;
+    pointer-events: none;
+}
+
+.controls {
+    width: 320px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid var(--border);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.brand h1 {
+    font-weight: 300;
+    letter-spacing: 4px;
+    font-size: 24px;
+    margin-bottom: 4px;
+    text-align: center;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.brand p {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.control-group h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+label {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--text-main);
+    margin-top: -6px;
+    box-shadow: 0 0 10px var(--accent-glow);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--accent);
+}
+
+.file-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn-file {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-file:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+}
+
+.btn-file input {
+    display: none;
+}
+
+.playback-controls {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--text-main);
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.btn-danger {
+    background: #ff4d4d;
+    color: #fff;
+}
+
+.btn-danger.recording {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.drag-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.drag-overlay.active {
+    opacity: 1;
+}
+
+.drag-overlay span {
+    font-size: 24px;
+    letter-spacing: 2px;
+    border: 2px dashed var(--text-muted);
+    padding: 40px;
+}

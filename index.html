@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Bloom Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Main Canvas Area -->
+        <main class="canvas-container">
+            <canvas id="glCanvas"></canvas>
+            <canvas id="uiCanvas"></canvas> <!-- For visualizer overlay if needed -->
+
+            <div class="drag-overlay" id="dragOverlay">
+                <span>Drop files to upload</span>
+            </div>
+        </main>
+
+        <!-- Controls Sidebar -->
+        <aside class="controls">
+            <div class="brand">
+                <h1>ETHEREAL</h1>
+                <p>Cinematic Visualizer</p>
+            </div>
+
+            <div class="control-group">
+                <h3>Assets</h3>
+                <div class="file-inputs">
+                    <div id="ui-container">
+                        <!-- Canvas Layers -->
+                        <canvas id="glCanvas"></canvas>
+                        <canvas id="uiCanvas"></canvas>
+
+                        <!-- Controls Overlay -->
+                        <div id="controls">
+                            <div class="control-group">
+                                <h3>Cinema Control</h3>
+                                <label>Bloom Threshold <span id="val-bloom-threshold">0.6</span></label>
+                                <input type="range" id="bloomThreshold" min="0" max="1" step="0.01" value="0.6">
+
+                                <label>Bloom Strength <span id="val-bloom-strength">1.5</span></label>
+                                <input type="range" id="bloomStrength" min="0" max="3" step="0.1" value="1.5">
+
+                                <label>Radius <span id="val-bloom-radius">0.5</span></label>
+                                <input type="range" id="bloomRadius" min="0" max="5" step="0.1" value="1.0">
+
+                                <label>Exposure <span id="val-exposure">1.2</span></label>
+                                <input type="range" id="exposure" min="0.1" max="3" step="0.1" value="1.2">
+
+                                <label>Speed/Flow <span id="val-soft-focus">1.0</span></label>
+                                <input type="range" id="softFocus" min="0" max="5" step="0.1" value="1.0">
+                            </div>
+
+                            <div class="control-group">
+                                <h3>Media</h3>
+                                <label class="file-btn">
+                                    Upload Background
+                                    <input type="file" id="bgInput" accept="image/*,video/*">
+                                </label>
+                                <label class="file-btn">
+                                    Upload Audio
+                                    <input type="file" id="audioInput" accept="audio/*">
+                                </label>
+
+                                <div class="toggle-row">
+                                    <label for="showVisualizer">Visualizer</label>
+                                    <input type="checkbox" id="showVisualizer" checked>
+                                </div>
+
+                                <div class="buttons">
+                                    <button id="playBtn">▶ Play</button>
+                                    <button id="recordBtn">● Record</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="dragOverlay">Drop Files Here</div>
+                    </div>
+
+                    <!-- Scripts -->
+                    <script src="shaders.js?v=2"></script>
+                    <script src="script.js?v=2"></script>
+</body>
+
+</html>
